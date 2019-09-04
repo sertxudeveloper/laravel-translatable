@@ -1,0 +1,30 @@
+{
+  "name": "sertxudeveloper/laravel-translatable",
+  "description": "Add translatable Eloquent models and route localization to your Laravel.",
+  "keywords": ["laravel", "translatable", "localization"],
+  "authors": [
+    {
+      "name": "Sertxu Developer",
+      "email": "dev.sertxu@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "SertxuDeveloper\\Translatable\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SertxuDeveloper\\Translatable\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SertxuDeveloper\\Lyra\\TranslatableServiceProvider"
+      ]
+    }
+  }
+}
