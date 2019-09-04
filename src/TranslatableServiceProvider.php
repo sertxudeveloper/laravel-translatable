@@ -1,8 +1,9 @@
 <?php
 
 namespace SertxuDeveloper\Translatable;
-  
+
 use Illuminate\Support\ServiceProvider;
+use SertxuDeveloper\Translatable\Facades\Translatable as TranslatableFacade;
   
 class TranslatableServiceProvider extends ServiceProvider {
 
@@ -21,6 +22,13 @@ class TranslatableServiceProvider extends ServiceProvider {
    * @return void
    */
   public function register() {
+    $loader = AliasLoader::getInstance();
+    $loader->alias('Translatable', TranslatableFacade::class);
+
+    $this->app->singleton('translatable', function () {
+      return new Translatable();
+    });
+
     $this->mergeConfig();
   }
 
