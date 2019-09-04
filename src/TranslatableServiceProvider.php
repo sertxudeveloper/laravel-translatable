@@ -3,6 +3,7 @@
 namespace SertxuDeveloper\Translatable;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 use SertxuDeveloper\Translatable\Facades\Translatable as TranslatableFacade;
   
 class TranslatableServiceProvider extends ServiceProvider {
