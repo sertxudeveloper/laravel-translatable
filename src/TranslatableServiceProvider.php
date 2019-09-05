@@ -5,7 +5,8 @@ namespace SertxuDeveloper\Translatable;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use SertxuDeveloper\Translatable\Facades\Translatable as TranslatableFacade;
-  
+use SertxuDeveloper\Translatable\Macros\TranslatableRoutesMacro;
+
 class TranslatableServiceProvider extends ServiceProvider {
 
   /**
@@ -15,6 +16,7 @@ class TranslatableServiceProvider extends ServiceProvider {
    */
   public function boot() {
     $this->registerPublishableFiles();
+    $this->registerMacros();
   }
 
   /**
@@ -34,19 +36,28 @@ class TranslatableServiceProvider extends ServiceProvider {
   }
 
   /**
+   * Register macros.
+   *
+   * @return void
+   */
+  protected function registerMacros() {
+    TranslatableRoutesMacro::register();
+  }
+
+  /**
    * Register the publishable files.
    *
    * @return void
    */
   protected function registerPublishableFiles() {
     $packagePath = __DIR__ . '/..';
-    
+
     $publishable = [
       "translatable-config" => [
         "{$packagePath}/publishable/config/translatable.php" => config_path('translatable.php')
       ],
     ];
-    
+
     foreach ($publishable as $group => $paths) {
       $this->publishes($paths, $group);
     }
