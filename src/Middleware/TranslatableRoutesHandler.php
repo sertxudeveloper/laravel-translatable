@@ -31,7 +31,7 @@ class TranslatableRoutesHandler {
         if (Translatable::isFallbackLocaleHidden() && Translatable::isFallbackLocale($locale)) {
           array_shift($params);
           $params = implode('/', $params);
-          $url = $request->server('REQUEST_SCHEME') . '://' . $request->server('HTTP_HOST') . '/' . $params;
+          $url = $request->root() . "/${params}";
           Session::reflash();
           return new RedirectResponse($url, 302, ['Vary' => 'Accept-Language']);
         }

@@ -44,27 +44,21 @@ class Translatable {
     }
 
     Session::reflash();
-    $url = $request->server('REQUEST_SCHEME') . '://' . $request->server('HTTP_HOST') . '/' . $url;
+    $url = $url = $request->root() . "/${url}";
     return $url;
   }
 
   public function route($name, $parameters = [], $absolute = false, $locale = null) {
-//    dd('$name', $name, config('translatable'));
-//    if (Route::has($name) && $locale === null) {
-//      return URL::route($name, $parameters, $absolute);
-//    }
     $name = $this->stripLocaleFromRouteName($name);
     $currentLocale = $this->getLocaleFromRequest();
+    $fallbackLocale = config('translatable.fallback_locale');
     $locale = $locale ?: $currentLocale;
-//    dd(Route::getRoutes());
-    if ($locale !== $currentLocale) App::setLocale($locale);
-//    dd($name);
-    if($absolute) {
-      $url = url($name, $parameters);
-    } else {
-      $url = URL::route($name, $parameters, $absolute);
+
+    if (!$this->isFallbackLocaleHidden() || $locale !== $fallbackLocale) {
+      $name = "${locale}.${name}";
     }
-//    array_push($parameters, $locale);
+    $url = URL::route($name, $parameters, $absolute);
+
     return $url;
   }
 
