@@ -5,12 +5,12 @@ return [
     /**
      * The locales availables in your project.
      */
-    "locales" => [],
-    
+    "locales" => ["es", "en", "it"],
+
     /**
      * The default locale in your project, it will be used if the requested locale is not available.
      */
-    "fallback_locale" => "en",
+    "fallback_locale" => "es",
     
     /**
      * Hide the default locale from the URL.
