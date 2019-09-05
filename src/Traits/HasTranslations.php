@@ -5,7 +5,7 @@ namespace SertxuDeveloper\Translatable\Traits;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
-class HasTranslations {
+trait HasTranslations {
 
   /**
    * Get the translated $attribute if not exist return the fallback translation
