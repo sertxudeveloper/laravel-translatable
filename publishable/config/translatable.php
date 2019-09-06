@@ -16,4 +16,9 @@ return [
      * Hide the default locale from the URL.
      */
     "hide_fallback_locale" => true,
+
+    /**
+     * The transtations table suffix
+     */
+    "table_sufix" => "_translations"
 ];

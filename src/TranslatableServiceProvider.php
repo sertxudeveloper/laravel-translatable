@@ -17,6 +17,7 @@ class TranslatableServiceProvider extends ServiceProvider {
   public function boot() {
     $this->registerPublishableFiles();
     $this->registerMacros();
+    $this->mergeConfig();
   }
 
   /**
@@ -32,7 +33,7 @@ class TranslatableServiceProvider extends ServiceProvider {
       return new Translatable();
     });
 
-    $this->mergeConfig();
+    $this->loadHelpers();
   }
 
   /**
@@ -66,10 +67,17 @@ class TranslatableServiceProvider extends ServiceProvider {
   /**
    * Merge published configuration file with
    * the original package configuration file.
-   *
-   * @return void
    */
   protected function mergeConfig() {
     $this->mergeConfigFrom(dirname(__DIR__) . '/publishable/config/translatable.php', 'translatable');
+  }
+
+  /**
+   * Get dynamically the Helpers from the /src/Helpers directory and require_once each file.
+   */
+  protected function loadHelpers() {
+    foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+      require_once $filename;
+    }
   }
 }

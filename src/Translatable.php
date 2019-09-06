@@ -50,15 +50,30 @@ class Translatable {
 
   public function route($name, $parameters = [], $absolute = false, $locale = null) {
     $name = $this->stripLocaleFromRouteName($name);
+
     $currentLocale = $this->getLocaleFromRequest();
     $fallbackLocale = config('translatable.fallback_locale');
     $locale = $locale ?: $currentLocale;
 
-    if (!$this->isFallbackLocaleHidden() || $locale !== $fallbackLocale) {
-      $name = "${locale}.${name}";
+    if (Route::has($name)) {
+      if (!$this->isFallbackLocaleHidden() || $locale !== $fallbackLocale) {
+        $name = "${locale}.${name}";
+      }
+      $url = URL::route($name, $parameters, $absolute);
+    } else {
+      $params = explode('/', $name);
+      if ($params[0] == null) array_shift($params);
+      if (\count($params) > 0) {
+        if ($this->checkLocaleInSupportedLocales($params[0])) array_shift($params);
+        $params = implode('/', $params);
+        if ($this->isFallbackLocaleHidden() && $this->isFallbackLocale($locale)) {
+          $url = $params;
+        } else {
+          $url = "/$locale/$params";
+        }
+      }
     }
-    $url = URL::route($name, $parameters, $absolute);
-
+    
     return $url;
   }
 

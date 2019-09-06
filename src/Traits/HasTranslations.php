@@ -19,7 +19,7 @@ trait HasTranslations {
     if (config('app.fallback_locale') === $lang) {
       return $this[$attribute];
     } else {
-      $translation = DB::table($this->table . '_translations')->where('locale', $lang)->where($this->getKeyName(), $this->getKey())->first();
+      $translation = DB::table($this->table . config('translatable.table_sufix'))->where([['locale', $lang], [$this->getKeyName(), $this->getKey()]])->first();
 
       return (!isset($translation->$attribute)) ? $this[$attribute] : $translation->$attribute;
     }
