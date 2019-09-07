@@ -75,6 +75,7 @@ Route::get('about', AboutController::class.'@index')->name('about');
 Inside this closure you can use Route Groups such as Middlewares, Namespaces or even Sub-Domain Routing. This closure will prepend the locale to the route's URI and name.
 
 This will be the result of the viewed configuration examples.
+
 | URI | Name | Locale |
 | --- | --- | --- |
 | /home | home | es - en - it |
