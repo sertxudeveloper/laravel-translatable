@@ -135,3 +135,5 @@ In production you can safely cache your routes per usual.
 ```sh
 php artisan route:cache
 ```
+
+Copyright (c) 2019 Sertxu Developer
