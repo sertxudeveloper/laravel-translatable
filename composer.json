@@ -1,7 +1,8 @@
 {
   "name": "sertxudeveloper/laravel-translatable",
-  "description": "Add translatable Eloquent models and route localization to your Laravel.",
+  "description": "Manage localized routes and use translatable models in a Laravel app.",
   "keywords": ["laravel", "translatable", "localization"],
+  "version": "1.0",
   "authors": [
     {
       "name": "Sertxu Developer",

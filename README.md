@@ -27,7 +27,6 @@ php artisan vendor:publish --provider="SertxuDeveloper\Translatable\Translatable
 
 After running this command, you will now find a ``translatable.php`` file in the ``config`` folder.
 
-
 ### Locales availables
 You can set the locales availables in your application. The localized routes will be registered with all of these locales.
 
@@ -46,15 +45,7 @@ You can also hide the fallback locale from the URL prefix.
 "hide_fallback_locale" => true,
 ```
 
-### Eloquent translations
-You can to customize the name of the translations tables.
-
-```php
-"table_sufix" => "_translations"
-```
-
-The usage of this value will be the following one. If you have the model ``Page`` with the trait ``HasTranslations`` and the model table is ``pages``. This package will lookup for the translations at the table ``page_translations``. Always the model table followed by the table suffix in the config file.
-
+# Routes
 ## Register Routes
 All the routes you want lo localize should be registered inside the ``Route::localized`` closure.
 
@@ -127,6 +118,45 @@ The last param is used for specify the locale to use.
 
 ```php
 trans_route('blog', [], false, 'it') // /it/blog
+```
+
+## Switch Locale
+If your building a dropdown or similar with links to change the locale of the application, you should use the ``switch_to_locale`` helper.
+```php
+switch_to_locale('en') // Changes to 'en' locale without changing the route
+```
+
+# Eloquent translations
+
+## Create translations tables
+You can to customize the name of the translations tables.
+
+```php
+"table_sufix" => "_translations"
+```
+
+The usage of this value will be the following one. If you have the model ``Page`` with the trait ``HasTranslations`` and the model table is ``pages``. This package will lookup for the translations at the table ``page_translations``. Always the model table followed by the table suffix in the config file.
+
+The translations tables should contain the translatable fields from the model, the id, a column ``locale`` to specify the language saved, ``created_at`` and ``updated_at``. The column ``deleted_at`` should **never** be in the translations table, regardless the models is ``softDeleted`` or not.
+
+As you can see in the following example, 
+
+#### Pages table
+| id | name | slug | excerpt | body | image | status | created_at | updated_at | 
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| int | varchar | varchar | varchar | text | varchar | enum | datetime | datetime |
+
+#### Pages translation table
+| id | locale | name | excerpt | body | created_at | updated_at | 
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| int | varchar(2) | varchar | varchar | text | datetime | datetime |
+
+## Get Eloquent Translated Attribute
+In order to get a translated attribute you should use the ``getTranslated`` method.
+
+```php
+$post = Post::find(1);
+echo $post->getTranslated('name');
 ```
 
 ## Cache Routes
