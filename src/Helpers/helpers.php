@@ -7,3 +7,9 @@ if (!function_exists('trans_route')) {
     return Translatable::route($name, $params, $absolute, $locale);
   }
 }
+
+if (!function_exists('switch_to_locale')) {
+  function switch_to_locale($locale) {
+    return Translatable::switchToLocale($locale);
+  }
+}
