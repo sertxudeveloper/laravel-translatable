@@ -90,9 +90,7 @@ class Translatable {
 
   /**
    * Strip the locale from the beginning of a route name.
-   *
    * @param string $name
-   *
    * @return string
    */
   protected function stripLocaleFromRouteName($name) {
