@@ -14,7 +14,6 @@ class TranslatableRoutesHandler {
 
   /**
    * Set language for localized route
-   *
    * @param \Illuminate\Http\Request $request
    * @param \Closure $next
    * @return mixed
