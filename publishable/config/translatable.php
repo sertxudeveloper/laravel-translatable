@@ -3,7 +3,7 @@
 return [
 
     /**
-     * The locales availables in your project.
+     * The locales available in your project.
      */
     "locales" => ["es", "en", "it"],
 
@@ -18,7 +18,7 @@ return [
     "hide_fallback_locale" => true,
 
     /**
-     * The transtations table suffix
+     * The translations table suffix
      */
-    "table_sufix" => "_translations"
+    "table_suffix" => "_translations"
 ];
