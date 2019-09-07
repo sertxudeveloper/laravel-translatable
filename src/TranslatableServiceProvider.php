@@ -33,6 +33,7 @@ class TranslatableServiceProvider extends ServiceProvider {
       return new Translatable();
     });
 
+    $this->registerPublishableFiles()
     $this->loadHelpers();
   }
 
@@ -54,7 +55,7 @@ class TranslatableServiceProvider extends ServiceProvider {
     $packagePath = __DIR__ . '/..';
 
     $publishable = [
-      "translatable-config" => [
+      "config" => [
         "{$packagePath}/publishable/config/translatable.php" => config_path('translatable.php')
       ],
     ];
