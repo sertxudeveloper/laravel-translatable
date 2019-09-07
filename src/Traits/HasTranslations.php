@@ -16,7 +16,7 @@ trait HasTranslations {
    */
   public function getTranslated($attribute, $lang = false) {
     if(!$lang) $lang = App::getLocale();
-    if (config('app.fallback_locale') === $lang) {
+    if (config('translatable.fallback_locale') === $lang) {
       return $this[$attribute];
     } else {
       $translation = DB::table($this->table . config('translatable.table_sufix'))->where([['locale', $lang], [$this->getKeyName(), $this->getKey()]])->first();
