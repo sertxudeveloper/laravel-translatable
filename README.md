@@ -148,7 +148,7 @@ As you can see in the following example,
 
 #### Pages translation table
 | id | locale | name | excerpt | body | created_at | updated_at | 
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | int | varchar(2) | varchar | varchar | text | datetime | datetime |
 
 ## Get Eloquent Translated Attribute
