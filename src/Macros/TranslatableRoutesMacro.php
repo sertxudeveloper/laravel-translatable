@@ -12,7 +12,6 @@ class TranslatableRoutesMacro {
 
   /**
    * Register the macro.
-   *
    * @return void
    */
   public static function register() {
