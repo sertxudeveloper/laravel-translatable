@@ -31,6 +31,8 @@ class TranslatableRoutesHandler {
           array_shift($params);
           $params = implode('/', $params);
           $url = $request->root() . "/${params}";
+          $query = http_build_query($request->all());
+          $url = ($query) ? "$url?$query" : $url; 
           Session::reflash();
           return new RedirectResponse($url, 302, ['Vary' => 'Accept-Language']);
         }
