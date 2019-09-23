@@ -43,7 +43,6 @@ class Translatable {
       $url = '';
     }
 
-    Session::reflash();
     $url = $url = $request->root() . "/${url}";
     return $url;
   }
