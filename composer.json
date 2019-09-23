@@ -3,6 +3,7 @@
   "description": "Manage localized routes and use translatable models in a Laravel app.",
   "keywords": ["laravel", "translatable", "localization"],
   "version": "1.0.1",
+  "license": "MIT",
   "authors": [
     {
       "name": "Sertxu Developer",
