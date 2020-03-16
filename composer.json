@@ -2,7 +2,7 @@
   "name": "sertxudeveloper/laravel-translatable",
   "description": "Manage localized routes and use translatable models in a Laravel app.",
   "keywords": ["laravel", "translatable", "localization"],
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "authors": [
     {
