@@ -33,19 +33,21 @@ class TranslatableRoutesMacro {
         Route::group($attributes, $closure);
       }
     }
+    
+    if (!Route::hasMacro('soundex')) {
+      Route::macro('localized', function (Closure $closure) {
+        $locales = config('translatable.locales');
+        $fallbackLocale = config('translatable.fallback_locale');
 
-    Route::macro('localized', function (Closure $closure) {
-      $locales = config('translatable.locales');
-      $fallbackLocale = config('translatable.fallback_locale');
+        foreach ($locales as $locale) {
+          if($fallbackLocale === $locale) continue;
+          registerRoutes($locale, $closure);
+        }
 
-      foreach ($locales as $locale) {
-        if($fallbackLocale === $locale) continue;
-        registerRoutes($locale, $closure);
-      }
+        registerRoutes($fallbackLocale, $closure);
 
-      registerRoutes($fallbackLocale, $closure);
-
-    });
+      });
+    }
   }
 
 }
