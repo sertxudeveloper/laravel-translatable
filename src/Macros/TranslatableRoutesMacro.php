@@ -14,27 +14,27 @@ class TranslatableRoutesMacro {
    * Register the macro.
    * @return void
    */
-  public static function register() {
-    function registerRoutes($locale, Closure $closure) {
-      // $currentLocale = Translatable::getLocaleFromRequest();
-      $fallbackLocale = config('translatable.fallback_locale');
-      $hideFallbackLocale = config('translatable.hide_fallback_locale');
+  public static function register() {    
+    if (!Route::hasMacro('localized')) {
+      function registerRoutes($locale, Closure $closure) {
+        // $currentLocale = Translatable::getLocaleFromRequest();
+        $fallbackLocale = config('translatable.fallback_locale');
+        $hideFallbackLocale = config('translatable.hide_fallback_locale');
 
-      $attributes = [];
-      $attributes["middleware"] = [TranslatableRoutesHandler::class];
-
-      $attributes["as"] = "${locale}.";
-      $attributes["prefix"] = $locale;
-      Route::group($attributes, $closure);
-
-      if ($hideFallbackLocale && $locale === $fallbackLocale) {
         $attributes = [];
         $attributes["middleware"] = [TranslatableRoutesHandler::class];
+
+        $attributes["as"] = "${locale}.";
+        $attributes["prefix"] = $locale;
         Route::group($attributes, $closure);
+
+        if ($hideFallbackLocale && $locale === $fallbackLocale) {
+          $attributes = [];
+          $attributes["middleware"] = [TranslatableRoutesHandler::class];
+          Route::group($attributes, $closure);
+        }
       }
-    }
-    
-    if (!Route::hasMacro('localized')) {
+      
       Route::macro('localized', function (Closure $closure) {
         $locales = config('translatable.locales');
         $fallbackLocale = config('translatable.fallback_locale');
