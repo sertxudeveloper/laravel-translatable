@@ -34,7 +34,7 @@ class TranslatableRoutesMacro {
       }
     }
     
-    if (!Route::hasMacro('soundex')) {
+    if (!Route::hasMacro('localized')) {
       Route::macro('localized', function (Closure $closure) {
         $locales = config('translatable.locales');
         $fallbackLocale = config('translatable.fallback_locale');
