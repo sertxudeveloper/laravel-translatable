@@ -3,7 +3,7 @@
 use SertxuDeveloper\Translatable\Facades\Translatable;
 
 if (!function_exists('trans_route')) {
-  function trans_route($name, $params = [], $absolute = false, $locale = false) {
+  function trans_route($name, $params = [], $absolute = false, $locale = null) {
     return Translatable::route($name, $params, $absolute, $locale);
   }
 }
