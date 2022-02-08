@@ -13,3 +13,20 @@ if (!function_exists('switch_to_locale')) {
     return Translatable::switchToLocale($locale);
   }
 }
+
+if (!function_exists('is_route')) {
+  function is_route(string $name): bool {
+
+    /** Check route without locales */
+    if (request()->routeIs($name))
+      return true;
+
+    /** Check route with locales */
+    foreach (config('translatable.locales') as $locale) {
+      if (request()->routeIs("$locale.$name"))
+        return true;
+    }
+
+    return false;
+  }
+}

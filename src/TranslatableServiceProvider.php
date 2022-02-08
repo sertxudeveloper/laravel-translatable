@@ -51,11 +51,11 @@ class TranslatableServiceProvider extends ServiceProvider {
    * @return void
    */
   protected function registerPublishableFiles() {
-    $packagePath = __DIR__ . '/..';
+    $packagePath = dirname(__DIR__);
 
     $publishable = [
-      "config" => [
-        "${packagePath}/publishable/config/translatable.php" => config_path('translatable.php')
+      'trans-config' => [
+        "$packagePath/publishable/config/translatable.php" => config_path('translatable.php')
       ],
     ];
 

@@ -10,19 +10,23 @@ trait HasTranslations {
   /**
    * Get the translated $attribute if not exist return the fallback translation
    *
-   * @param $attribute
-   * @param bool $lang
+   * @param string $attribute
+   * @param string|null $lang
    * @return string
    */
-  public function getTranslated($attribute, $lang = false) {
-    if(!$lang) $lang = App::getLocale();
-    if (config('translatable.fallback_locale') === $lang) {
+  public function getTranslated(string $attribute, ?string $lang = null): string {
+    if (!$lang) $lang = App::getLocale();
+
+    if (config('translatable.fallback_locale') === $lang)
       return $this[$attribute];
-    } else {
-      $translation = DB::table($this->table . config('translatable.table_suffix'))->where([['locale', $lang], [$this->getKeyName(), $this->getKey()]])->first();
 
-      return (!isset($translation->$attribute)) ? $this[$attribute] : $translation->$attribute;
-    }
+    $translation = DB::table($this->table . config('translatable.table_suffix'))
+      ->where([
+        ['locale', $lang], [
+          $this->getKeyName(), $this->getKey(),
+        ],
+      ])->first();
+
+    return (!isset($translation->$attribute)) ? $this[$attribute] : $translation->$attribute;
   }
-
 }
