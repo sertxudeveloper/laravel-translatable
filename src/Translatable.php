@@ -33,10 +33,13 @@ class Translatable {
 
     if (count($params) > 0) {
       $locale = $params[0];
-      if ($this->checkLocaleInSupportedLocales($locale)) return $locale;
+
+      if ($this->checkLocaleInSupportedLocales($locale)) {
+          return $locale;
+      }
     }
 
-    return config('translatable.fallback_locale');
+    return app()->getLocale() ?? config('translatable.fallback_locale');
   }
 
   /**
