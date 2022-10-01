@@ -1,4 +1,8 @@
+
+<p align="center"><img src="/art/socialcard.png" alt="Laravel Translatable by Sertxu Developer"></p>
+
 # Laravel Translatable
+
 ![](https://img.shields.io/github/v/release/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/github/license/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/librariesio/github/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/github/repo-size/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/packagist/dt/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/github/issues/sertxudeveloper/laravel-translatable) ![](https://img.shields.io/packagist/php-v/sertxudeveloper/laravel-translatable)
 
 **Manage localized routes and use translatable models in a Laravel app.**
@@ -141,15 +145,15 @@ This package will look up for the translations at the table `page_translations`.
 The translations tables should contain the translatable fields from the model, the id, a column `locale` to specify the language saved, `created_at` and `updated_at`.
 The column `deleted_at` should **never** be in the translations table, regardless the models is `softDeleted` or not.
 
-As you can see in the following example, 
+As you can see in the following example,
 
 #### Pages table
-| id | name | slug | excerpt | body | image | status | created_at | updated_at | 
+| id | name | slug | excerpt | body | image | status | created_at | updated_at |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | int | varchar | varchar | varchar | text | varchar | enum | datetime | datetime |
 
 #### Pages translation table
-| id | locale | name | excerpt | body | created_at | updated_at | 
+| id | locale | name | excerpt | body | created_at | updated_at |
 | --- | --- | --- | --- | --- | --- | --- |
 | int | varchar(2) | varchar | varchar | text | datetime | datetime |
 
@@ -167,5 +171,6 @@ In production, you can safely cache your routes per usual.
 ```sh
 php artisan route:cache
 ```
+
 <br><br>
-Copyright © 2019 Sertxu Developer
+<p align="center">Copyright © 2022 Sertxu Developer</p>
