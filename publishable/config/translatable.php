@@ -20,5 +20,5 @@ return [
     /**
      * The translations' table suffix.
      */
-    'table_suffix' => '_translations'
+    'table_suffix' => '_translations',
 ];
