@@ -2,9 +2,10 @@
 
 namespace SertxuDeveloper\Translatable;
 
-use function count;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+
+use function count;
 
 class Translatable
 {
