@@ -60,12 +60,12 @@ class Translatable
      * Given a route name or path, return it localized if possible.
      *
      * @param  string  $name The route name or path to localize.
-     * @param  array  $parameters The route parameters.
+     * @param  mixed  $parameters The route parameters.
      * @param  bool  $absolute Whether to return an absolute URL.
      * @param  string|null  $locale The locale to use.
      * @return string The localized route.
      */
-    public function route(string $name, array $parameters = [], bool $absolute = false, string $locale = null): string {
+    public function route(string $name, $parameters = [], bool $absolute = false, string $locale = null): string {
         $name = $this->stripLocaleFromRouteName($name);
 
         $currentLocale = $this->getLocaleFromRequest();
