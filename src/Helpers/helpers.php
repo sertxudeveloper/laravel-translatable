@@ -15,16 +15,20 @@ if (!function_exists('switch_to_locale')) {
 }
 
 if (!function_exists('is_route')) {
-    function is_route(string $name): bool {
+    function is_route($patterns): bool {
+        $patterns = Arr::wrap($patterns);
+
         /** Check route without locales */
-        if (request()->routeIs($name)) {
+        if (request()->routeIs($patterns)) {
             return true;
         }
 
         /** Check route with locales */
         foreach (config('translatable.locales') as $locale) {
-            if (request()->routeIs("$locale.$name")) {
-                return true;
+            foreach ($patterns as $pattern) {
+                if (request()->routeIs("$locale.$pattern")) {
+                    return true;
+                }
             }
         }
 
