@@ -10,7 +10,7 @@ trait HasTranslations
     /**
      * Get the translated $attribute if not exist return the fallback translation
      */
-    public function getTranslated(string $attribute, ?string $lang = null): string {
+    public function getTranslated(string $attribute, ?string $lang = null): ?string {
         if (!$lang) {
             $lang = App::getLocale();
         }
